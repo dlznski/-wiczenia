@@ -13,7 +13,6 @@ function uzyj {
 
 if [ "$1" = "--date" ] || [ "$1" = "-d" ]; then
     echo "Dzisiejsza data: $(date +%Y-%m-%d)"
-    exit 0
 fi
 
 if [ "$1" = "--logs" ] || [ "$1" = "-l" ]; then
@@ -24,7 +23,6 @@ if [ "$1" = "--logs" ] || [ "$1" = "-l" ]; then
     echo "Nazwa skryptu: $0" >> $plik
     echo "Data utworzenia: $(date)" >> $plik
     done
-    exit 0
 fi
 
 if [ "$1" = "--logs30" ] || [ "$1" = "-l30" ]; then
@@ -41,15 +39,12 @@ if [ "$1" = "--logs30" ] || [ "$1" = "-l30" ]; then
         echo "Nazwa skryptu: $0" >> $plik
         echo "Data utworzenia: $(date)" >> $plik
     done
-
-    exit 0
 fi
 
 if [ "$1" = "--init" ]; then
     git clone https://github.com/dlznski/cwiczenia.git
     export PATH=$PATH:$(pwd)/cwiczenia
     echo "Repozytorium zostało sklonowane i ścieżka została dodana do zmiennej PATH"
-    exit 0
 fi
 
 if [ "$1" = "--error" ] || [ "$1" = "-e30" ]; then
@@ -65,13 +60,10 @@ if [ "$1" = "--error" ] || [ "$1" = "-e30" ]; then
         echo "Nazwa pliku: $plik" > $plik
         echo "Data utworzenia: $(date)" >> $plik
     done
-
-    exit 0
 fi
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     uzyj
-    exit 0
 fi
 
 echo "Nieznana opcja. Użyj --help, aby wyświetlić dostępne opcje."
