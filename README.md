@@ -1,2 +1,2 @@
-# -wiczenia
+# cwiczenia
 Narzędzia pracy w branży IT
