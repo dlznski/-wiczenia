@@ -3,10 +3,11 @@
 function uzyj {
     echo "Użycie: $0 [OPCJA] [ARGUMENT] "
     echo "Opcje:"
-    echo "  '--date', '-d'  Wyświetla aktulną date"
-    echo "  '--logs', '-l' Utwórz 100 plików log z datą i nazwą skryptu"
-    echo "  '--logs30', '-l30'  Utwórz pliki log z datą i nazwą skryptu"
-    echo "  '--help', '-h' Wyświetl dostępne opcje"
+    echo " '--date', '-d' Wyświetla aktulną date"
+    echo " '--logs', '-l' Utwórz 100 plików log z datą i nazwą skryptu"
+    echo " '--logs30', '-l30' Utwórz pliki log z datą i nazwą skryptu"
+    echo " '--init, -i' Klonuj repozytorium i ustaw PATH"
+    echo " '--help', '-h' Wyświetl dostępne opcje"
 }
 
 if [ "$1" = "--date" ] || [ "$1" = "-d" ]; then
@@ -40,6 +41,13 @@ if [ "$1" = "--logs30" ] || [ "$1" = "-l30" ]; then
         echo "Data utworzenia: $(date)" >> $plik
     done
 
+    exit 0
+fi
+
+if [ "$1" = "--init" ]; then
+    git clone https://github.com/dlznski/cwiczenia.git
+    export PATH=$PATH:$(pwd)/cwiczenia
+    echo "Repozytorium zostało sklonowane i ścieżka została dodana do zmiennej PATH"
     exit 0
 fi
 
