@@ -1,21 +1,21 @@
 #!/bin/bash
 
 function uzyj {
-    echo "Użycie: $0 [OPCJA] [ARGUMENT]"
-    echo ""
+    echo "Użycie: $0 [OPCJA] [ARGUMENT] "
     echo "Opcje:"
-    echo "  '--logs' Utwórz pliki log z datą i nazwą skryptu"
-    echo "  '--logs30'  Utwórz pliki log z datą i nazwą skryptu"
-    echo "  '--date'  Wyświetla aktulną date"
-    echo "  '--help'  Wyświetl dostępne opcje"
+    echo " '--date', '-d' Wyświetla aktulną date"
+    echo " '--logs', '-l' Utwórz 100 plików log z datą i nazwą skryptu"
+    echo " '--logs30', '-l30' Utwórz pliki log z datą i nazwą skryptu"
+    echo " '--init, -i' Klonuj repozytorium i ustaw PATH"
+    echo " '--help', '-h' Wyświetl dostępne opcje"
 }
 
-if [ "$1" = "--date" ]; then
+if [ "$1" = "--date" ] || [ "$1" = "-d" ]; then
     echo "Dzisiejsza data: $(date +%Y-%m-%d)"
     exit 0
 fi
 
-if [ "$1" = "--logs" ]; then
+if [ "$1" = "--logs" ] || [ "$1" = "-l" ]; then
     for ((i=1; i<=100; i++))
     do
     plik="log$i.txt"
@@ -26,12 +26,11 @@ if [ "$1" = "--logs" ]; then
     exit 0
 fi
 
-if [ "$1" = "--logs30" ]; then
+if [ "$1" = "--logs30" ] || [ "$1" = "-l30" ]; then
     if [ "$2" -gt 0 ] 2>/dev/null; then
         ilosc_log=$2
     else
-        echo "Podaj poprawną liczbę plików"
-        exit 1
+        ilosc_log=30
     fi
 
     for ((i=1; i<=ilosc_log; i++))
@@ -45,7 +44,14 @@ if [ "$1" = "--logs30" ]; then
     exit 0
 fi
 
-if [ "$1" = "--help" ]; then
+if [ "$1" = "--init" ]; then
+    git clone https://github.com/dlznski/cwiczenia.git
+    export PATH=$PATH:$(pwd)/cwiczenia
+    echo "Repozytorium zostało sklonowane i ścieżka została dodana do zmiennej PATH"
+    exit 0
+fi
+
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     uzyj
     exit 0
 fi
